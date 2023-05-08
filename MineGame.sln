@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MineGame", "MineGame\MineGame.csproj", "{2A212B48-8691-4884-ADF2-A93C628BF77A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{8878CA1B-9C8B-4E64-B01B-4FC728BB28DB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2A212B48-8691-4884-ADF2-A93C628BF77A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A212B48-8691-4884-ADF2-A93C628BF77A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A212B48-8691-4884-ADF2-A93C628BF77A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A212B48-8691-4884-ADF2-A93C628BF77A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8878CA1B-9C8B-4E64-B01B-4FC728BB28DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8878CA1B-9C8B-4E64-B01B-4FC728BB28DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8878CA1B-9C8B-4E64-B01B-4FC728BB28DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8878CA1B-9C8B-4E64-B01B-4FC728BB28DB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
