@@ -62,8 +62,6 @@ namespace Tests.Unit
                 case Move.Right:
                     board.MovePlayerRight();
                     break;
-                default:
-                    throw new NotImplementedException();
             };
         }
 
