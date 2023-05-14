@@ -13,7 +13,6 @@ public class Game : IGame
         this.board = board;
     }
 
-
     public void MoveUp()
     {
         board.MovePlayerUp();

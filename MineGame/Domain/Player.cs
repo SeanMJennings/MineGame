@@ -1,7 +1,4 @@
-using MineGame.Board;
-using MineGame.Domain;
-
-namespace MineGame.Player;
+namespace MineGame.Domain;
 
 public class Player
 {
@@ -38,5 +35,4 @@ public class Player
     {
         _hits++;
     }
-    
 }

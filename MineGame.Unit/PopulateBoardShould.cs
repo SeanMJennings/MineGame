@@ -1,8 +1,8 @@
-using MineGame.Domain;
-
-namespace Tests.Unit;
-using NUnit.Framework;
 using MineGame.Board;
+using MineGame.Domain;
+using NUnit.Framework;
+
+namespace Tests;
 
 [TestFixture]
 public class PopulateBoardShould
@@ -27,7 +27,7 @@ public class PopulateBoardShould
     }
 
     [Test]
-    public void NotPopulateMoreLandminesThanBoardPositions()
+    public void NotCreateMoreLandminesThanBoardPositions()
     {
         TestDelegate action = () => _populateBoard.PopulateLandmines(1, 1, 2);
         var exception = Assert.Catch(action);

@@ -16,8 +16,13 @@ public class Landmine
         return _position;
     }
 
-    public bool IsDetonated()
+    public void Detonate()
     {
-        return _detonated;
+        _detonated = true;
+    }
+
+    public bool IsNotDetonated()
+    {
+        return !_detonated;
     }
 }

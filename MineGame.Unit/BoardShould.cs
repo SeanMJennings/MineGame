@@ -1,14 +1,11 @@
+using MineGame.Board;
 using MineGame.Domain;
-using MineGame.Player;
 using NSubstitute;
 using NSubstitute.ClearExtensions;
-using NUnit.Framework.Constraints;
+using NUnit.Framework;
 
-namespace Tests.Unit
+namespace Tests
 {
-    using MineGame.Board;
-    using NUnit.Framework;
-
     [TestFixture]
     public class BoardShould
     {
@@ -44,6 +41,16 @@ namespace Tests.Unit
             SetupAllLandmineBoard();
             MovePlayer(Move.Up);
             Assert.AreEqual(1, board.GetLandminesHit());
+        }
+
+        [Test]
+        public void NotLetPlayerHitSameLandmineTwice()
+        {
+            SetupAllLandmineBoard();
+            MovePlayer(Move.Up);
+            MovePlayer(Move.Up);
+            MovePlayer(Move.Down);
+            Assert.AreEqual(2, board.GetLandminesHit());
         }
 
         private void MovePlayer(Move move)

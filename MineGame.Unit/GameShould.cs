@@ -1,11 +1,10 @@
 using MineGame.Board;
 using MineGame.Domain;
 using MineGame.Game;
-using MineGame.Player;
 using NSubstitute;
 using NUnit.Framework;
 
-namespace Tests.Unit;
+namespace Tests;
 
 [TestFixture]
 public class GameShould
