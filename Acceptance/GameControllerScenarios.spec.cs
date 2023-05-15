@@ -3,7 +3,7 @@ using Test;
 
 namespace Acceptance;
 
-public partial class GameEngineScenarios : Specification
+public partial class GameControllerScenarios : Specification
 {
     [Test]
     public void A_player_can_win_the_game()

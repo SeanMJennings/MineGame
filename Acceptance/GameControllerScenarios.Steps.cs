@@ -10,7 +10,7 @@ using NSubstitute;
 using Unit.Domain;
 using Player = Game.Domain.Player;
 
-public partial class GameEngineScenarios
+public partial class GameControllerScenarios
 {
     private IMineCreator mineCreator;
     private IGameController gameController;
