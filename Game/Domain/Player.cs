@@ -1,5 +1,6 @@
 namespace Game.Domain;
 
+using Enums;
 using Primitives;
 
 public class Player : GameEntity

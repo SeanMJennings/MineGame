@@ -1,13 +1,11 @@
 namespace Game;
 
-using System.Net;
 using Application;
 using Domain;
 using Domain.Board;
 using Domain.Primitives;
 using Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 using UI;
 
 public static class Program
@@ -16,7 +14,7 @@ public static class Program
     {
         var serviceProvider = SetupServiceProvider();
         var gameConsole = serviceProvider.GetService<IGameConsole>();
-        gameConsole.Play();
+        gameConsole!.Play();
     }
 
     private static ServiceProvider SetupServiceProvider()

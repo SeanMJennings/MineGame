@@ -1,4 +1,6 @@
-namespace Game.Domain.Primitives;
+namespace Game.Domain.Dto;
+
+using Primitives;
 
 public class PlayerState
 {

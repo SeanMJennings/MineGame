@@ -1,6 +1,8 @@
 namespace Unit.Infrastructure;
 
 using Game.Application;
+using Game.Domain.Dto;
+using Game.Domain.Enums;
 using Game.Domain.Primitives;
 using Game.Infrastructure;
 using NSubstitute;

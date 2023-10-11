@@ -1,5 +1,6 @@
 namespace Game.Domain.Board;
 
+using Enums;
 using Primitives;
 
 public class Board

@@ -4,11 +4,13 @@ using Domain.Primitives;
 using Infrastructure;
 using System;
 using Application;
+using Domain.Dto;
+using Domain.Enums;
 
 public class GameConsole : IGameConsole
 {
     private readonly IGameController gameController;
-    private GameState gameState;
+    private GameState _gameState;
 
     public GameConsole(IGameController gameController)
     {
@@ -18,7 +20,7 @@ public class GameConsole : IGameConsole
 
     public void Play()
     {
-        while (gameState == GameState.InPlay)
+        while (_gameState == GameState.InPlay)
         {
             PlayPrompt();
         }
@@ -44,7 +46,7 @@ public class GameConsole : IGameConsole
 
     private void OnGameState(object? sender, GameState gameState)
     {
-        this.gameState = gameState;
+        _gameState = gameState;
         if (gameState != GameState.InPlay)
         {
             Console.WriteLine($"Game result: {gameState}");
@@ -60,7 +62,7 @@ public class GameConsole : IGameConsole
     private static Direction? ConvertToDirection(char? input)
     {
         if (input != null)
-            return Char.ToLower(input.Value) switch
+            return char.ToLower(input.Value) switch
             {
                 'u' => Direction.Up,
                 'r' => Direction.Right,

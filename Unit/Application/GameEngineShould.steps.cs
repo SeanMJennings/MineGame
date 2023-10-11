@@ -4,6 +4,7 @@ using Domain;
 using Game.Application;
 using Game.Domain;
 using Game.Domain.Board;
+using Game.Domain.Enums;
 using Game.Domain.Primitives;
 using NSubstitute;
 using NUnit.Framework;

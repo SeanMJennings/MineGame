@@ -1,4 +1,4 @@
-namespace Game.Domain.Primitives;
+namespace Game.Domain.Enums;
 
 public enum Direction
 {

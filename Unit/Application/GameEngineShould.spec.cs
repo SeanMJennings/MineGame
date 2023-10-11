@@ -1,5 +1,6 @@
 namespace Unit.Application;
 
+using Game.Domain.Enums;
 using Game.Domain.Primitives;
 using NUnit.Framework;
 using Test;

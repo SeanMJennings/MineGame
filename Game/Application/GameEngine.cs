@@ -2,6 +2,8 @@ namespace Game.Application;
 
 using Domain;
 using Domain.Board;
+using Domain.Dto;
+using Domain.Enums;
 using Domain.Primitives;
 
 public class GameEngine : IGameEngine
