@@ -7,9 +7,7 @@ public class Player : GameEntity
 {
     private int landminesHit;
 
-    public Player(Position position) : base(position)
-    {
-    }
+    public Player(Position position) : base(position) {}
 
     public int GetLandminesHit()
     {
@@ -18,14 +16,14 @@ public class Player : GameEntity
 
     public void Move(Direction direction)
     {
-        if (direction == Direction.Up)
-            Position = new Position(Position.GetRow() + 1, Position.GetColumn());
-        if (direction == Direction.Right)
-            Position = new Position(Position.GetRow(), Position.GetColumn() + 1);        
-        if (direction == Direction.Left)
-            Position = new Position(Position.GetRow(), Position.GetColumn() - 1);        
-        if (direction == Direction.Down)
-            Position = new Position(Position.GetRow() - 1, Position.GetColumn());
+        Position = direction switch
+        {
+            Direction.Up => new Position(Position.GetRow() + 1, Position.GetColumn()),
+            Direction.Right => new Position(Position.GetRow(), Position.GetColumn() + 1),
+            Direction.Left => new Position(Position.GetRow(), Position.GetColumn() - 1),
+            Direction.Down => new Position(Position.GetRow() - 1, Position.GetColumn()),
+            _ => Position
+        };
     }
 
     public void HitLandmine(Landmine landmine)

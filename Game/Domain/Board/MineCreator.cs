@@ -4,12 +4,8 @@ using Primitives;
 
 public class MineCreator : IMineCreator
 {
-    private Random random;
-    public MineCreator()
-    {
-        random = new Random();
-    }
-    
+    private readonly Random random = new();
+
     public IEnumerable<Landmine> CreateMines(BoardDimensions boardDimensions)
     {
         var landmines = new List<Landmine>();

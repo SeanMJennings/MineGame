@@ -6,7 +6,7 @@ using Primitives;
 public class Board
 {
     private readonly BoardDimensions boardDimensions;
-    private List<Landmine> landmines;
+    private readonly List<Landmine> landmines;
 
     public Board(BoardDimensions boardDimensions, IMineCreator mineCreator)
     {
@@ -25,15 +25,14 @@ public class Board
 
     public bool MoveIsValid(Position playerPosition, Direction direction)
     {
-        if (direction == Direction.Up)
-            return playerPosition.GetRow() + 1 < boardDimensions.BoardLength;
-        if (direction == Direction.Right)
-            return playerPosition.GetColumn() + 1 < boardDimensions.BoardWidth;        
-        if (direction == Direction.Left)
-            return playerPosition.GetColumn() - 1 >= 0;
-        if (direction == Direction.Down)
-            return playerPosition.GetRow() - 1 >= 0;
-        return false;
+        return direction switch
+        {
+            Direction.Up => playerPosition.GetRow() + 1 < boardDimensions.BoardLength,
+            Direction.Right => playerPosition.GetColumn() + 1 < boardDimensions.BoardWidth,
+            Direction.Left => playerPosition.GetColumn() - 1 >= 0,
+            Direction.Down => playerPosition.GetRow() - 1 >= 0,
+            _ => false
+        };
     }
 
     public bool IsPlayerAtTopOfBoard(Player player)

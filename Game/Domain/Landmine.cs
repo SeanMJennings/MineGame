@@ -5,9 +5,7 @@ using Primitives;
 public class Landmine : GameEntity
 {
     private bool exploded;
-    public Landmine(Position position) : base(position)
-    {
-    }
+    public Landmine(Position position) : base(position) {}
 
     public bool IsExploded()
     {

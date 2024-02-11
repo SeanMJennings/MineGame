@@ -6,7 +6,7 @@ public abstract class GameEntity
 {
     protected Position Position;
 
-    public GameEntity(Position position)
+    protected GameEntity(Position position)
     {
         Position = position;
     }

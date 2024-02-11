@@ -15,8 +15,8 @@ public partial class GameEngineShould : Specification
     {
         Given(there_are_no_landmines);
         And(the_game_has_started);
-        When(() => a_player_moves(direction));
-        Then(() => then_the_player_is_in_the_new_position(rowPosition, columnPosition));
+        When(a_player_moves(direction));
+        Then(then_the_player_is_in_the_new_position(rowPosition, columnPosition));
     }
 
     [Test]
@@ -24,7 +24,7 @@ public partial class GameEngineShould : Specification
     {
         Given(there_are_landmines);
         And(the_game_has_started);
-        When(() => a_player_moves(Direction.Up));
+        When(a_player_moves(Direction.Up));
         Then(the_player_has_hit_a_landmine);
     }
 
@@ -33,8 +33,8 @@ public partial class GameEngineShould : Specification
     {
         Given(there_are_landmines);
         And(the_game_has_started);
-        When(() => a_player_moves(Direction.Up));
-        When(() => a_player_moves(Direction.Up));
+        When(a_player_moves(Direction.Up));
+        When(a_player_moves(Direction.Up));
         Then(the_game_is_still_in_play);
     }
 
@@ -43,9 +43,9 @@ public partial class GameEngineShould : Specification
     {
         Given(there_are_landmines);
         And(the_game_has_started);
-        When(() => a_player_moves(Direction.Up));
-        When(() => a_player_moves(Direction.Up));
-        When(() => a_player_moves(Direction.Up));
+        When(a_player_moves(Direction.Up));
+        When(a_player_moves(Direction.Up));
+        When(a_player_moves(Direction.Up));
         Then(the_game_is_lost);
     }
 
@@ -54,10 +54,10 @@ public partial class GameEngineShould : Specification
     {
         Given(there_are_no_landmines);
         And(the_game_has_started);
-        When(() => a_player_moves(Direction.Up));
-        When(() => a_player_moves(Direction.Up));
-        When(() => a_player_moves(Direction.Up));
-        When(() => a_player_moves(Direction.Up));
+        When(a_player_moves(Direction.Up));
+        When(a_player_moves(Direction.Up));
+        When(a_player_moves(Direction.Up));
+        When(a_player_moves(Direction.Up));
         Then(the_game_is_won);
     }
 
@@ -66,7 +66,7 @@ public partial class GameEngineShould : Specification
     {
         Given(there_are_no_landmines);
         And(the_game_has_ended);
-        When(() => a_player_moves(Direction.Right));
+        When(a_player_moves(Direction.Right));
         Then(the_player_does_not_move);
     }
 
@@ -75,9 +75,9 @@ public partial class GameEngineShould : Specification
     {
         Given(there_are_landmines);
         And(the_game_has_started);
-        When(() => a_player_moves(Direction.Up));
-        When(() => a_player_moves(Direction.Up));
-        When(() => a_player_moves(Direction.Down));
+        When(a_player_moves(Direction.Up));
+        When(a_player_moves(Direction.Up));
+        When(a_player_moves(Direction.Down));
         Then(the_game_is_still_in_play);
     }
 
@@ -88,9 +88,9 @@ public partial class GameEngineShould : Specification
     public void NotLetPlayerLeaveBoard(Direction direction, int row, int column)
     {
         Given(there_are_no_landmines);
-        And(() => the_player_is_repositioned(row, column));
+        And(the_player_is_repositioned(row, column));
         And(the_game_has_started);
-        When(() => a_player_moves(direction));
-        Then(() => the_player_is_still_on_the_board(row, column));
+        When(a_player_moves(direction));
+        Then(the_player_is_still_on_the_board(row, column));
     }
 }

@@ -4,7 +4,6 @@ using Domain;
 using Domain.Board;
 using Domain.Dto;
 using Domain.Enums;
-using Domain.Primitives;
 
 public class GameEngine : IGameEngine
 {
@@ -21,7 +20,6 @@ public class GameEngine : IGameEngine
     public void Move(Direction direction)
     {
         if (CannotMove(direction)) return;
-        
         player.Move(direction);
         board.DetonateLandmine(player);
         CalculateGameState();
@@ -44,13 +42,11 @@ public class GameEngine : IGameEngine
 
     private void CalculateGameState()
     {
-        if (DidPlayerLose()) return;
-        
+        if (PlayerLost()) return;
         DidPlayerWin();
-
     }
 
-    private bool DidPlayerLose()
+    private bool PlayerLost()
     {
         if (player.GetLandminesHit() <= 2) return false;
         

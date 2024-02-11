@@ -3,7 +3,6 @@ namespace Game.Infrastructure;
 using Application;
 using Domain.Dto;
 using Domain.Enums;
-using Domain.Primitives;
 
 public class GameController : IGameController
 {

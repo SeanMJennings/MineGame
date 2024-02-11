@@ -8,14 +8,14 @@ using Test;
 [TestFixture]
 public partial class MineCreatorShould : Specification
 {
-    private IMineCreator mineCreator;
-    private IEnumerable<Landmine> landmines;
-    private BoardDimensions boardDimensions;
+    private IMineCreator mineCreator = null!;
+    private IEnumerable<Landmine> landmines = null!;
+    private BoardDimensions boardDimensions = null!;
 
     [SetUp]
     public void Before()
     {
-        landmines = null;
+        landmines = null!;
         boardDimensions = new BoardDimensions(4, 4);
     }
     

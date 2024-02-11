@@ -29,10 +29,10 @@ public class GameConsole : IGameConsole
     private void PlayPrompt()
     {
         Console.WriteLine("Press: U,L,R,D");
-        Direction? input = null;
+        Direction? input;
         do
         {
-            input = ConvertToDirection(Console.ReadLine()[0]);
+            input = ConvertToDirection(Console.ReadLine()?[0]);
         } while (input is null);
         
         gameController.Move(input.Value);
@@ -53,10 +53,10 @@ public class GameConsole : IGameConsole
         }
     }
 
-    private void OnPlayerState(object? sender, PlayerState playerState)
+    private static void OnPlayerState(object? sender, PlayerState playerState)
     {
-        Console.WriteLine($"Mines hit: {playerState.GetLandminesHit()}");
-        Console.WriteLine($"Player position: row {playerState.GetPosition().GetRow()}, column {playerState.GetPosition().GetColumn()}");
+        Console.WriteLine($"Mines hit: {playerState.GetLandminesHit}");
+        Console.WriteLine($"Player position: row {playerState.GetPosition.GetRow()}, column {playerState.GetPosition.GetColumn()}");
     }
     
     private static Direction? ConvertToDirection(char? input)

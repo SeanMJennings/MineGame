@@ -11,11 +11,11 @@ using NUnit.Framework;
 
 public partial class GameEngineShould
 {
-    private IGameEngine gameEngine;
-    private Board board;
-    private IMineCreator mineCreator;
-    private Player player;
-    private BoardDimensions boardDimensions;
+    private IGameEngine gameEngine = null!;
+    private Board board = null!;
+    private IMineCreator mineCreator = null!;
+    private Player player = null!;
+    private BoardDimensions boardDimensions = null!;
 
     [SetUp]
     public void Before()
@@ -31,9 +31,12 @@ public partial class GameEngineShould
         gameEngine = new GameEngine(board, player);
     }
 
-    private void the_player_is_repositioned(int row, int column)
+    private Action the_player_is_repositioned(int row, int column)
     {
-        player = new Player(new Position(row, column));
+        return () =>
+        {
+            player = new Player(new Position(row, column));
+        };
     }
 
     private void there_are_landmines()
@@ -46,9 +49,13 @@ public partial class GameEngineShould
         mineCreator.CreateMines(boardDimensions).Returns(new List<Landmine>());
     }
 
-    private void a_player_moves(Direction direction)
+    private Action a_player_moves(Direction direction)
     {
-        gameEngine.Move(direction);
+        return () =>
+        {
+            gameEngine.Move(direction);
+        };
+
     }
     
     private void the_game_is_still_in_play()
@@ -56,10 +63,14 @@ public partial class GameEngineShould
         Assert.AreEqual(GameState.InPlay, gameEngine.GetGameState());
     }
 
-    private void the_player_is_still_on_the_board(int row, int column)
+    private Action the_player_is_still_on_the_board(int row, int column)
     {
-        Assert.AreEqual(row, gameEngine.GetPlayerState().GetPosition().GetRow());
-        Assert.AreEqual(column, gameEngine.GetPlayerState().GetPosition().GetColumn());
+        return () =>
+        {
+            Assert.AreEqual(row, gameEngine.GetPlayerState().GetPosition.GetRow());
+            Assert.AreEqual(column, gameEngine.GetPlayerState().GetPosition.GetColumn());
+        };
+
     }
 
     private void the_game_is_lost()
@@ -74,25 +85,30 @@ public partial class GameEngineShould
 
     private void the_game_has_ended()
     {
-        a_player_moves(Direction.Up);
-        a_player_moves(Direction.Up);
-        a_player_moves(Direction.Up);
-        a_player_moves(Direction.Up);
+        board = new Board(boardDimensions, mineCreator);
+        gameEngine = new GameEngine(board, player);
+        a_player_moves(Direction.Up).Invoke();
+        a_player_moves(Direction.Up).Invoke();
+        a_player_moves(Direction.Up).Invoke();
+        a_player_moves(Direction.Up).Invoke();
     }
 
-    private void then_the_player_is_in_the_new_position(int rowPosition, int columnPosition)
+    private Action then_the_player_is_in_the_new_position(int rowPosition, int columnPosition)
     {
-        Assert.AreEqual(new Position(rowPosition, columnPosition), gameEngine.GetPlayerState().GetPosition());
+        return () =>
+        {
+            Assert.AreEqual(new Position(rowPosition, columnPosition), gameEngine.GetPlayerState().GetPosition);
+        };
     }
 
     private void the_player_has_hit_a_landmine()
     {
-        Assert.AreEqual(1, gameEngine.GetPlayerState().GetLandminesHit());
+        Assert.AreEqual(1, gameEngine.GetPlayerState().GetLandminesHit);
     }
 
     private void the_player_does_not_move()
     {
-        Assert.AreEqual(4, gameEngine.GetPlayerState().GetPosition().GetRow());
-        Assert.AreEqual(1, gameEngine.GetPlayerState().GetPosition().GetColumn());
+        Assert.AreEqual(4, gameEngine.GetPlayerState().GetPosition.GetRow());
+        Assert.AreEqual(1, gameEngine.GetPlayerState().GetPosition.GetColumn());
     }
 }

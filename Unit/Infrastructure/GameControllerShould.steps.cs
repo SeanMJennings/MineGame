@@ -14,8 +14,8 @@ public partial class GameControllerShould
     private Position playerPosition;
     private int landMinesHit;
     
-    private IGameController gameController;
-    private IGameEngine gameEngine;
+    private IGameController gameController = null!;
+    private IGameEngine gameEngine = null!;
 
     [SetUp]
     public void Before()
@@ -28,8 +28,8 @@ public partial class GameControllerShould
         
         gameController.PlayerState += (sender, e) =>
         {
-            playerPosition = e.GetPosition();
-            landMinesHit = e.GetLandminesHit();
+            playerPosition = e.GetPosition;
+            landMinesHit = e.GetLandminesHit;
         };
         gameController.GameState += (sender, e) =>
         {
