@@ -1,7 +1,6 @@
-namespace Unit.Application;
+namespace Tests.Application;
 
 using Game.Domain.Enums;
-using Game.Domain.Primitives;
 using NUnit.Framework;
 using Test;
 

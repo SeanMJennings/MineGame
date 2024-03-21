@@ -1,7 +1,7 @@
-namespace Unit.Infrastructure;
+namespace Tests.Infrastructure;
 
 using Game.Application;
-using Game.Domain.Dto;
+using Game.Domain.Dtos;
 using Game.Domain.Enums;
 using Game.Domain.Primitives;
 using Game.Infrastructure;
@@ -14,7 +14,7 @@ public partial class GameControllerShould
     private Position playerPosition;
     private int landMinesHit;
     
-    private IGameController gameController = null!;
+    private GameController gameController = null!;
     private IGameEngine gameEngine = null!;
 
     [SetUp]
@@ -26,12 +26,12 @@ public partial class GameControllerShould
         playerPosition = default;
         landMinesHit = default;
         
-        gameController.PlayerState += (sender, e) =>
+        gameController.PlayerState += (_, e) =>
         {
-            playerPosition = e.GetPosition;
-            landMinesHit = e.GetLandminesHit;
+            playerPosition = e.Position;
+            landMinesHit = e.LandminesHit;
         };
-        gameController.GameState += (sender, e) =>
+        gameController.GameState += (_, e) =>
         {
             gameState = e;
         };
@@ -39,12 +39,12 @@ public partial class GameControllerShould
 
     private void the_game_has_started()
     {
-        gameEngine.GetPlayerState().Returns( new PlayerState(new Position(1,0), 0));
+        gameEngine.PlayerState.Returns( new PlayerState(new Position(1,0), 0));
     }
 
     private void there_are_landmines()
     {
-        gameEngine.GetPlayerState().Returns( new PlayerState(new Position(0,1), 1));
+        gameEngine.PlayerState.Returns( new PlayerState(new Position(0,1), 1));
     }
 
     private void the_player_moves_up()
@@ -54,15 +54,15 @@ public partial class GameControllerShould
 
     private void the_player_reaches_the_top_of_the_board()
     {
-        gameEngine.GetPlayerState().Returns( new PlayerState(new Position(7,0), 0));
-        gameEngine.GetGameState().Returns(GameState.Won);
+        gameEngine.PlayerState.Returns( new PlayerState(new Position(7,0), 0));
+        gameEngine.GameState.Returns(GameState.Won);
         gameController.Move(Direction.Up);
     }
 
     private void the_player_hits_three_landmines()
     {
-        gameEngine.GetPlayerState().Returns( new PlayerState(new Position(3,0), 3));
-        gameEngine.GetGameState().Returns(GameState.Lost);
+        gameEngine.PlayerState.Returns( new PlayerState(new Position(3,0), 3));
+        gameEngine.GameState.Returns(GameState.Lost);
         gameController.Move(Direction.Up);
     }
 

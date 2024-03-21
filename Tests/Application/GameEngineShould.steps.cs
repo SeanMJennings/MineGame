@@ -1,9 +1,9 @@
-namespace Unit.Application;
+namespace Tests.Application;
 
 using Domain;
 using Game.Application;
-using Game.Domain;
-using Game.Domain.Board;
+using Game.Domain.Entities;
+using Game.Domain.Entities.Board;
 using Game.Domain.Enums;
 using Game.Domain.Primitives;
 using NSubstitute;
@@ -27,8 +27,8 @@ public partial class GameEngineShould
     
     private void the_game_has_started()
     {
-        board = new Board(boardDimensions, mineCreator);
-        gameEngine = new GameEngine(board, player);
+        board = new Board(boardDimensions, mineCreator, player);
+        gameEngine = new GameEngine(board);
     }
 
     private Action the_player_is_repositioned(int row, int column)
@@ -60,33 +60,34 @@ public partial class GameEngineShould
     
     private void the_game_is_still_in_play()
     {
-        Assert.AreEqual(GameState.InPlay, gameEngine.GetGameState());
+        
+        Assert.AreEqual(GameState.InPlay, gameEngine.GameState);
     }
 
     private Action the_player_is_still_on_the_board(int row, int column)
     {
         return () =>
         {
-            Assert.AreEqual(row, gameEngine.GetPlayerState().GetPosition.GetRow());
-            Assert.AreEqual(column, gameEngine.GetPlayerState().GetPosition.GetColumn());
+            Assert.AreEqual(row, gameEngine.PlayerState.Position.GetRow());
+            Assert.AreEqual(column, gameEngine.PlayerState.Position.GetColumn());
         };
 
     }
 
     private void the_game_is_lost()
     {
-        Assert.AreEqual(GameState.Lost, gameEngine.GetGameState());
+        Assert.AreEqual(GameState.Lost, gameEngine.GameState);
     }
 
     private void the_game_is_won()
     {
-        Assert.AreEqual(GameState.Won, gameEngine.GetGameState());
+        Assert.AreEqual(GameState.Won, gameEngine.GameState);
     }
 
     private void the_game_has_ended()
     {
-        board = new Board(boardDimensions, mineCreator);
-        gameEngine = new GameEngine(board, player);
+        board = new Board(boardDimensions, mineCreator, player);
+        gameEngine = new GameEngine(board);
         a_player_moves(Direction.Up).Invoke();
         a_player_moves(Direction.Up).Invoke();
         a_player_moves(Direction.Up).Invoke();
@@ -97,18 +98,18 @@ public partial class GameEngineShould
     {
         return () =>
         {
-            Assert.AreEqual(new Position(rowPosition, columnPosition), gameEngine.GetPlayerState().GetPosition);
+            Assert.AreEqual(new Position(rowPosition, columnPosition), gameEngine.PlayerState.Position);
         };
     }
 
     private void the_player_has_hit_a_landmine()
     {
-        Assert.AreEqual(1, gameEngine.GetPlayerState().GetLandminesHit);
+        Assert.AreEqual(1, gameEngine.PlayerState.LandminesHit);
     }
 
     private void the_player_does_not_move()
     {
-        Assert.AreEqual(4, gameEngine.GetPlayerState().GetPosition.GetRow());
-        Assert.AreEqual(1, gameEngine.GetPlayerState().GetPosition.GetColumn());
+        Assert.AreEqual(4, gameEngine.PlayerState.Position.GetRow());
+        Assert.AreEqual(1, gameEngine.PlayerState.Position.GetColumn());
     }
 }

@@ -1,13 +1,11 @@
-namespace Game.Domain;
+namespace Game.Domain.Entities;
 
 using Enums;
 using Primitives;
 
-public class Player : GameEntity
+public class Player(Position position) : BoardPiece(position)
 {
     private int landminesHit;
-
-    public Player(Position position) : base(position) {}
 
     public int GetLandminesHit()
     {

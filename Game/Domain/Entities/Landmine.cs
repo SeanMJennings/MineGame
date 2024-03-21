@@ -1,11 +1,10 @@
-namespace Game.Domain;
+namespace Game.Domain.Entities;
 
 using Primitives;
 
-public class Landmine : GameEntity
+public class Landmine(Position position) : BoardPiece(position)
 {
     private bool exploded;
-    public Landmine(Position position) : base(position) {}
 
     public bool IsExploded()
     {

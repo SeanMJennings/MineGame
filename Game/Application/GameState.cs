@@ -1,4 +1,4 @@
-namespace Game.Domain.Enums;
+namespace Game.Application;
 
 public enum GameState
 {

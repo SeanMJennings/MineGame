@@ -1,62 +1,32 @@
 namespace Game.Application;
 
-using Domain;
-using Domain.Board;
-using Domain.Dto;
+using Domain.Dtos;
+using Domain.Entities.Board;
 using Domain.Enums;
 
-public class GameEngine : IGameEngine
+public interface IGameEngine
 {
-    private readonly Board board;
-    private readonly Player player;
-    private GameState gameState;
-    
-    public GameEngine(Board board, Player player)
-    {
-        this.board = board;
-        this.player = player;
-    }
-    
+    void Move(Direction up);
+    PlayerState PlayerState { get; }
+    GameState GameState { get; }
+}
+
+public class GameEngine(Board board) : IGameEngine
+{
     public void Move(Direction direction)
     {
-        if (CannotMove(direction)) return;
-        player.Move(direction);
-        board.DetonateLandmine(player);
+        if (GameState != GameState.InPlay) return;
+        board.MovePlayer(direction);
         CalculateGameState();
     }
 
-    public PlayerState GetPlayerState()
-    {
-        return new PlayerState(player.GetPosition(), player.GetLandminesHit());
-    }
+    public GameState GameState { get; private set; }
 
-    public GameState GetGameState()
-    {
-        return gameState;
-    }
-
-    private bool CannotMove(Direction direction)
-    {
-        return gameState != GameState.InPlay || !board.MoveIsValid(player.GetPosition(), direction);
-    }
+    public PlayerState PlayerState => board.GetPlayerState();
 
     private void CalculateGameState()
     {
-        if (PlayerLost()) return;
-        DidPlayerWin();
-    }
-
-    private bool PlayerLost()
-    {
-        if (player.GetLandminesHit() <= 2) return false;
-        
-        gameState = GameState.Lost;
-        return true;
-    }
-
-    private void DidPlayerWin()
-    {
-        if (board.IsPlayerAtTopOfBoard(player))
-            gameState = GameState.Won;
+        if (board.GetPlayerState().LandminesHit == 3) GameState = GameState.Lost;
+        else if (board.IsPlayerAtTopOfBoard()) GameState = GameState.Won;
     }
 }

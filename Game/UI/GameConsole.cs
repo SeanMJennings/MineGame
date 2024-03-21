@@ -4,15 +4,15 @@ using Domain.Primitives;
 using Infrastructure;
 using System;
 using Application;
-using Domain.Dto;
+using Domain.Dtos;
 using Domain.Enums;
 
-public class GameConsole : IGameConsole
+public class GameConsole
 {
-    private readonly IGameController gameController;
+    private readonly GameController gameController;
     private GameState _gameState;
 
-    public GameConsole(IGameController gameController)
+    public GameConsole(GameController gameController)
     {
         this.gameController = gameController;
         ListenToGame();
@@ -32,7 +32,8 @@ public class GameConsole : IGameConsole
         Direction? input;
         do
         {
-            input = ConvertToDirection(Console.ReadLine()?[0]);
+            var consoleValue = Console.ReadLine();
+            input = ConvertToDirection(consoleValue!.Length > 0 ? consoleValue[0] : null);
         } while (input is null);
         
         gameController.Move(input.Value);
@@ -55,8 +56,8 @@ public class GameConsole : IGameConsole
 
     private static void OnPlayerState(object? sender, PlayerState playerState)
     {
-        Console.WriteLine($"Mines hit: {playerState.GetLandminesHit}");
-        Console.WriteLine($"Player position: row {playerState.GetPosition.GetRow()}, column {playerState.GetPosition.GetColumn()}");
+        Console.WriteLine($"Mines hit: {playerState.LandminesHit}");
+        Console.WriteLine($"Player position: row {playerState.Position.GetRow()}, column {playerState.Position.GetColumn()}");
     }
     
     private static Direction? ConvertToDirection(char? input)

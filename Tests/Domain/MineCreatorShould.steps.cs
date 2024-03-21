@@ -1,7 +1,7 @@
-namespace Unit.Domain;
+namespace Tests.Domain;
 
-using Game.Domain;
-using Game.Domain.Board;
+using Game.Domain.Entities;
+using Game.Domain.Entities.Board;
 using NUnit.Framework;
 using Test;
 

@@ -1,4 +1,4 @@
-﻿namespace Unit.Infrastructure;
+﻿namespace Tests.Infrastructure;
 
 using NUnit.Framework;
 using Test;

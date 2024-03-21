@@ -1,25 +1,25 @@
 namespace Acceptance;
 
 using Game.Application;
-using Game.Domain.Board;
 using NUnit.Framework;
-using Game.Domain;
+using Game.Domain.Entities;
+using Game.Domain.Entities.Board;
 using Game.Domain.Enums;
 using Game.Domain.Primitives;
 using Game.Infrastructure;
 using NSubstitute;
-using Unit.Domain;
-using Player = Game.Domain.Player;
+using Tests.Domain;
+using Player = Game.Domain.Entities.Player;
 
-public partial class GameControllerScenarios
+public partial class GameScenarios
 {
-    private IMineCreator mineCreator;
-    private IGameController gameController;
+    private IMineCreator mineCreator = null!;
+    private GameController gameController = null!;
     private GameState gameState;
-    private Board board;
-    private IGameEngine gameEngine;
-    private BoardDimensions boardDimensions;
-    private Player player;
+    private Board board = null!;
+    private IGameEngine gameEngine = null!;
+    private BoardDimensions boardDimensions = null!;
+    private Player player = null!;
 
     [SetUp]
     public void Before()
@@ -33,8 +33,8 @@ public partial class GameControllerScenarios
         boardDimensions = new BoardDimensions(8, 8);
         mineCreator = Substitute.For<IMineCreator>();
         mineCreator.CreateMines(Arg.Any<BoardDimensions>()).Returns(new List<Landmine>());
-        board = new Board(boardDimensions, mineCreator);
-        gameEngine = new GameEngine(board, player);
+        board = new Board(boardDimensions, mineCreator, player);
+        gameEngine = new GameEngine(board);
         gameController = new GameController(gameEngine);
     }    
     
@@ -42,14 +42,14 @@ public partial class GameControllerScenarios
     {
         boardDimensions = new BoardDimensions(8, 8);
         mineCreator = new FakeMineCreator();
-        board = new Board(boardDimensions, mineCreator);
-        gameEngine = new GameEngine(board, player);
+        board = new Board(boardDimensions, mineCreator, player);
+        gameEngine = new GameEngine(board);
         gameController = new GameController(gameEngine);
     }
 
     private void a_game_has_started()
     {
-        gameController.GameState += (sender,e) =>
+        gameController.GameState += (_,e) =>
         {
             gameState = e;
         };

@@ -1,6 +1,12 @@
-namespace Game.Domain.Board;
+namespace Game.Domain.Entities.Board;
 
+using Entities;
 using Primitives;
+
+public interface IMineCreator
+{
+    IEnumerable<Landmine> CreateMines(BoardDimensions boardDimensions);
+}
 
 public class MineCreator : IMineCreator
 {
@@ -37,6 +43,6 @@ public class MineCreator : IMineCreator
 
     private static bool LandmineAlreadyExists(Position landMinePosition, IEnumerable<Landmine> landmines)
     {
-        return landmines.Any(l => l.GetPosition().Equals(landMinePosition));
+        return landmines.Any(l => l.Position.Equals(landMinePosition));
     }
 }
