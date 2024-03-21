@@ -4,9 +4,9 @@ using Dtos;
 using Entities;
 using Enums;
 
-public class Board(BoardDimensions boardDimensions, IMineCreator mineCreator, Player player)
+public class Board(BoardDimensions boardDimensions, IAmAMineCreator amAMineCreator, Player player)
 {
-    private readonly List<Landmine> landmines = mineCreator.CreateMines(boardDimensions).ToList();
+    private readonly List<Landmine> landmines = amAMineCreator.CreateMines(boardDimensions).ToList();
 
     public void MovePlayer(Direction direction)
     {

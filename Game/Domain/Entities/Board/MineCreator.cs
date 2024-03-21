@@ -3,12 +3,12 @@ namespace Game.Domain.Entities.Board;
 using Entities;
 using Primitives;
 
-public interface IMineCreator
+public interface IAmAMineCreator
 {
     IEnumerable<Landmine> CreateMines(BoardDimensions boardDimensions);
 }
 
-public class MineCreator : IMineCreator
+public class MineCreator : IAmAMineCreator
 {
     private readonly Random random = new();
 

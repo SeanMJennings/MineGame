@@ -11,9 +11,9 @@ using NUnit.Framework;
 
 public partial class GameEngineShould
 {
-    private IGameEngine gameEngine = null!;
+    private IAmAGameEngine gameEngine = null!;
     private Board board = null!;
-    private IMineCreator mineCreator = null!;
+    private IAmAMineCreator amAMineCreator = null!;
     private Player player = null!;
     private BoardDimensions boardDimensions = null!;
 
@@ -21,13 +21,13 @@ public partial class GameEngineShould
     public void Before()
     {
         boardDimensions = new BoardDimensions(5, 5);
-        mineCreator = Substitute.For<IMineCreator>();
+        amAMineCreator = Substitute.For<IAmAMineCreator>();
         player = new Player(new Position(1, 1));
     }
     
     private void the_game_has_started()
     {
-        board = new Board(boardDimensions, mineCreator, player);
+        board = new Board(boardDimensions, amAMineCreator, player);
         gameEngine = new GameEngine(board);
     }
 
@@ -41,12 +41,12 @@ public partial class GameEngineShould
 
     private void there_are_landmines()
     {
-        mineCreator = new FakeMineCreator();
+        amAMineCreator = new FakeAmAMineCreator();
     }
 
     private void there_are_no_landmines()
     {
-        mineCreator.CreateMines(boardDimensions).Returns(new List<Landmine>());
+        amAMineCreator.CreateMines(boardDimensions).Returns(new List<Landmine>());
     }
 
     private Action a_player_moves(Direction direction)
@@ -86,7 +86,7 @@ public partial class GameEngineShould
 
     private void the_game_has_ended()
     {
-        board = new Board(boardDimensions, mineCreator, player);
+        board = new Board(boardDimensions, amAMineCreator, player);
         gameEngine = new GameEngine(board);
         a_player_moves(Direction.Up).Invoke();
         a_player_moves(Direction.Up).Invoke();

@@ -4,15 +4,15 @@ using Application;
 using Domain.Dtos;
 using Domain.Enums;
 
-public class GameController(IGameEngine gameEngine)
+public class GameController(IAmAGameEngine amAGameEngine)
 {
     public event EventHandler<PlayerState>? PlayerState;
     public event EventHandler<GameState>? GameState;
 
     public void Move(Direction move)
     {
-        gameEngine.Move(move);
-        OnMove(gameEngine.GameState, gameEngine.PlayerState); 
+        amAGameEngine.Move(move);
+        OnMove(amAGameEngine.GameState, amAGameEngine.PlayerState); 
     }
 
     private void OnMove(GameState gameState, PlayerState playerState)

@@ -4,14 +4,14 @@ using Domain.Dtos;
 using Domain.Entities.Board;
 using Domain.Enums;
 
-public interface IGameEngine
+public interface IAmAGameEngine
 {
     void Move(Direction direction);
     PlayerState PlayerState { get; }
     GameState GameState { get; }
 }
 
-public class GameEngine(Board board) : IGameEngine
+public class GameEngine(Board board) : IAmAGameEngine
 {
     public void Move(Direction direction)
     {

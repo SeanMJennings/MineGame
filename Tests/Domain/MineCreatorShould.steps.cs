@@ -8,7 +8,7 @@ using Test;
 [TestFixture]
 public partial class MineCreatorShould : Specification
 {
-    private IMineCreator mineCreator = null!;
+    private IAmAMineCreator amAMineCreator = null!;
     private IEnumerable<Landmine> landmines = null!;
     private BoardDimensions boardDimensions = null!;
 
@@ -21,12 +21,12 @@ public partial class MineCreatorShould : Specification
     
     private void the_mines_are_created()
     {
-        landmines = mineCreator.CreateMines(boardDimensions).ToList();
+        landmines = amAMineCreator.CreateMines(boardDimensions).ToList();
     }
 
     private void the_mine_creator()
     {
-        mineCreator = new MineCreator();
+        amAMineCreator = new MineCreator();
     }
 
     private void there_are_at_least_three_mines()

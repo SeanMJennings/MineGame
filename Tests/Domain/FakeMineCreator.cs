@@ -4,7 +4,7 @@ using Game.Domain.Entities;
 using Game.Domain.Entities.Board;
 using Game.Domain.Primitives;
 
-public class FakeMineCreator : IMineCreator
+public class FakeAmAMineCreator : IAmAMineCreator
 {
     public IEnumerable<Landmine> CreateMines(BoardDimensions boardDimensions)
     {

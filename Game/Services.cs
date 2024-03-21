@@ -11,7 +11,7 @@ public static class Services
 {
     private static GameConsole? gameConsole;
     private static GameController? gameController;
-    private static IGameEngine? gameEngine;
+    private static IAmAGameEngine? gameEngine;
     private static Board? board;
     private static readonly BoardDimensions BoardSize = new(8, 8);
     private static readonly Position Position = new (0, 0);
@@ -26,7 +26,7 @@ public static class Services
         return gameController ??= new GameController(GetGameEngine());
     }
 
-    private static IGameEngine GetGameEngine()
+    private static IAmAGameEngine GetGameEngine()
     {
         return gameEngine ??= new GameEngine(GetBoard());
     }
