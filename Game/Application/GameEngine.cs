@@ -6,7 +6,7 @@ using Domain.Enums;
 
 public interface IGameEngine
 {
-    void Move(Direction up);
+    void Move(Direction direction);
     PlayerState PlayerState { get; }
     GameState GameState { get; }
 }
