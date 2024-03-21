@@ -15,13 +15,13 @@ public partial class GameControllerShould
     private int landMinesHit;
     
     private GameController gameController = null!;
-    private IAmAGameEngine amAGameEngine = null!;
+    private IAmAGameEngine gameEngine = null!;
 
     [SetUp]
     public void Before()
     {
-        amAGameEngine = Substitute.For<IAmAGameEngine>();
-        gameController = new GameController(amAGameEngine);
+        gameEngine = Substitute.For<IAmAGameEngine>();
+        gameController = new GameController(gameEngine);
         gameState = default;
         playerPosition = default;
         landMinesHit = default;
@@ -39,12 +39,12 @@ public partial class GameControllerShould
 
     private void the_game_has_started()
     {
-        amAGameEngine.PlayerState.Returns( new PlayerState(new Position(1,0), 0));
+        gameEngine.PlayerState.Returns( new PlayerState(new Position(1,0), 0));
     }
 
     private void there_are_landmines()
     {
-        amAGameEngine.PlayerState.Returns( new PlayerState(new Position(0,1), 1));
+        gameEngine.PlayerState.Returns( new PlayerState(new Position(0,1), 1));
     }
 
     private void the_player_moves_up()
@@ -54,15 +54,15 @@ public partial class GameControllerShould
 
     private void the_player_reaches_the_top_of_the_board()
     {
-        amAGameEngine.PlayerState.Returns( new PlayerState(new Position(7,0), 0));
-        amAGameEngine.GameState.Returns(GameState.Won);
+        gameEngine.PlayerState.Returns( new PlayerState(new Position(7,0), 0));
+        gameEngine.GameState.Returns(GameState.Won);
         gameController.Move(Direction.Up);
     }
 
     private void the_player_hits_three_landmines()
     {
-        amAGameEngine.PlayerState.Returns( new PlayerState(new Position(3,0), 3));
-        amAGameEngine.GameState.Returns(GameState.Lost);
+        gameEngine.PlayerState.Returns( new PlayerState(new Position(3,0), 3));
+        gameEngine.GameState.Returns(GameState.Lost);
         gameController.Move(Direction.Up);
     }
 

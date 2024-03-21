@@ -13,7 +13,7 @@ using Player = Game.Domain.Entities.Player;
 
 public partial class GameScenarios
 {
-    private IAmAMineCreator amAMineCreator = null!;
+    private IAmAMineCreator mineCreator = null!;
     private GameController gameController = null!;
     private GameState gameState;
     private Board board = null!;
@@ -31,9 +31,9 @@ public partial class GameScenarios
     private void there_are_no_mines()
     {
         boardDimensions = new BoardDimensions(8, 8);
-        amAMineCreator = Substitute.For<IAmAMineCreator>();
-        amAMineCreator.CreateMines(Arg.Any<BoardDimensions>()).Returns(new List<Landmine>());
-        board = new Board(boardDimensions, amAMineCreator, player);
+        mineCreator = Substitute.For<IAmAMineCreator>();
+        mineCreator.CreateMines(Arg.Any<BoardDimensions>()).Returns(new List<Landmine>());
+        board = new Board(boardDimensions, mineCreator, player);
         gameEngine = new GameEngine(board);
         gameController = new GameController(gameEngine);
     }    
@@ -41,8 +41,8 @@ public partial class GameScenarios
     private void the_board_is_full_of_mines()
     {
         boardDimensions = new BoardDimensions(8, 8);
-        amAMineCreator = new FakeAmAMineCreator();
-        board = new Board(boardDimensions, amAMineCreator, player);
+        mineCreator = new FakeAmAMineCreator();
+        board = new Board(boardDimensions, mineCreator, player);
         gameEngine = new GameEngine(board);
         gameController = new GameController(gameEngine);
     }
