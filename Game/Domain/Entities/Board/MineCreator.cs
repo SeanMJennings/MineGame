@@ -29,8 +29,9 @@ public class MineCreator : IAmAMineCreator
         {
             for (var column = 0; column < boardDimensions.BoardWidth; column++)
             {
-                if (ShouldCreateLandmine(boardDimensions) && !LandmineAlreadyExists(new Position(row, column), landmines)) 
-                    landmines.Add(new Landmine(new Position(row, column)));
+                var newLandmine = new Landmine(new Position(row, column));
+                if (ShouldCreateLandmine(boardDimensions) && !LandmineAlreadyExists(newLandmine, landmines)) 
+                    landmines.Add(newLandmine);
             }
         }
     }
@@ -41,8 +42,8 @@ public class MineCreator : IAmAMineCreator
         return random.Next(uniquePositions) % 5 == 0;
     }
 
-    private static bool LandmineAlreadyExists(Position landMinePosition, IEnumerable<Landmine> landmines)
+    private static bool LandmineAlreadyExists(Landmine landMine, IEnumerable<Landmine> landmines)
     {
-        return landmines.Any(l => l.Position.Equals(landMinePosition));
+        return landmines.Any(l => l.Equals(landMine));
     }
 }

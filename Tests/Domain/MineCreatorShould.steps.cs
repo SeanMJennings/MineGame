@@ -36,6 +36,6 @@ public partial class MineCreatorShould : Specification
 
     private void no_mines_share_the_same_position()
     {
-        Assert.IsTrue(landmines.Distinct().Count() == landmines.Count());
+        Assert.IsTrue(landmines.GroupBy(l => l.Position).Count() == landmines.Count());
     }
 }
