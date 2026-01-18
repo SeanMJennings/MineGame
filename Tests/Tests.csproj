@@ -1,21 +1,33 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net8.0</TargetFramework>
+        <TargetFramework>net10.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <LangVersion>12</LangVersion>
+        <LangVersion>14</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.5.0" />
-      <PackageReference Include="NSubstitute" Version="5.0.0" />
-      <PackageReference Include="NUnit" Version="3.13.3" />
+      <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.0.1" />
+      <PackageReference Include="NSubstitute" Version="5.3.0" />
+      <PackageReference Include="NUnit" Version="4.4.0" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\Game\Game.csproj" />
       <ProjectReference Include="..\TestFramework\TestFramework.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Application\GameEngineShould.steps.cs">
+        <DependentUpon>GameEngineShould.spec.cs</DependentUpon>
+      </Compile>
+      <Compile Update="Domain\MineCreatorShould.steps.cs">
+        <DependentUpon>MineCreatorShould.spec.cs</DependentUpon>
+      </Compile>
+      <Compile Update="Infrastructure\GameControllerShould.steps.cs">
+        <DependentUpon>GameControllerShould.spec.cs</DependentUpon>
+      </Compile>
     </ItemGroup>
 
 </Project>

@@ -24,7 +24,7 @@ public partial class GameControllerShould
         gameController = new GameController(gameEngine);
         gameState = default;
         playerPosition = default;
-        landMinesHit = default;
+        landMinesHit = 0;
         
         gameController.PlayerState += (_, e) =>
         {
@@ -68,21 +68,21 @@ public partial class GameControllerShould
 
     private void the_player_location_is_one_square_up()
     {
-        Assert.IsTrue(playerPosition.Equals(new Position(1,0)));
+        Assert.That(playerPosition.Equals(new Position(1,0)), Is.True);
     }
 
     private void the_player_hits_a_landmine()
     {
-        Assert.AreEqual(1,landMinesHit);
+        Assert.That(1, Is.EqualTo(landMinesHit));
     }
 
     private void the_player_wins_the_game()
     {
-        Assert.AreEqual(GameState.Won, gameState);
+        Assert.That(GameState.Won, Is.EqualTo(gameState));
     }    
     
     private void the_player_loses_the_game()
     {
-        Assert.AreEqual(GameState.Lost, gameState);
+        Assert.That(GameState.Lost, Is.EqualTo(gameState));
     }
 }

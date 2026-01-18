@@ -60,28 +60,27 @@ public partial class GameEngineShould
     
     private void the_game_is_still_in_play()
     {
-        
-        Assert.AreEqual(GameState.InPlay, gameEngine.GameState);
+        Assert.That(GameState.InPlay, Is.EqualTo(gameEngine.GameState));
     }
 
     private Action the_player_is_still_on_the_board(int row, int column)
     {
         return () =>
         {
-            Assert.AreEqual(row, gameEngine.PlayerState.Position.GetRow());
-            Assert.AreEqual(column, gameEngine.PlayerState.Position.GetColumn());
+            Assert.That(row, Is.EqualTo(gameEngine.PlayerState.Position.GetRow()));
+            Assert.That(column, Is.EqualTo(gameEngine.PlayerState.Position.GetColumn()));
         };
 
     }
 
     private void the_game_is_lost()
     {
-        Assert.AreEqual(GameState.Lost, gameEngine.GameState);
+        Assert.That(GameState.Lost, Is.EqualTo(gameEngine.GameState));
     }
 
     private void the_game_is_won()
     {
-        Assert.AreEqual(GameState.Won, gameEngine.GameState);
+        Assert.That(GameState.Won, Is.EqualTo(gameEngine.GameState));
     }
 
     private void the_game_has_ended()
@@ -98,18 +97,18 @@ public partial class GameEngineShould
     {
         return () =>
         {
-            Assert.AreEqual(new Position(rowPosition, columnPosition), gameEngine.PlayerState.Position);
+            Assert.That(new Position(rowPosition, columnPosition), Is.EqualTo(gameEngine.PlayerState.Position));
         };
     }
 
     private void the_player_has_hit_a_landmine()
     {
-        Assert.AreEqual(1, gameEngine.PlayerState.LandminesHit);
+        Assert.That(1, Is.EqualTo(gameEngine.PlayerState.LandminesHit));
     }
 
     private void the_player_does_not_move()
     {
-        Assert.AreEqual(4, gameEngine.PlayerState.Position.GetRow());
-        Assert.AreEqual(1, gameEngine.PlayerState.Position.GetColumn());
+        Assert.That(4, Is.EqualTo(gameEngine.PlayerState.Position.GetRow()));
+        Assert.That(1, Is.EqualTo(gameEngine.PlayerState.Position.GetColumn()));
     }
 }

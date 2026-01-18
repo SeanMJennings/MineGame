@@ -76,11 +76,11 @@ public partial class GameScenarios
 
     private void the_player_wins_the_game()
     {
-        Assert.AreEqual(GameState.Won, gameState);
+        Assert.That(GameState.Won, Is.EqualTo(gameState));
     }    
     
     private void the_player_loses_the_game()
     {
-        Assert.AreEqual(GameState.Lost, gameState);
+        Assert.That(GameState.Lost, Is.EqualTo(gameState));
     }
 }

@@ -31,11 +31,11 @@ public partial class MineCreatorShould : Specification
 
     private void there_are_at_least_three_mines()
     {
-        Assert.IsTrue(landmines.Count() >= 3);
+        Assert.That(landmines.Count() >= 3, Is.True);
     }
 
     private void no_mines_share_the_same_position()
     {
-        Assert.IsTrue(landmines.GroupBy(l => l.Position).Count() == landmines.Count());
+        Assert.That(landmines.GroupBy(l => l.Position).Count() == landmines.Count(), Is.True);
     }
 }
